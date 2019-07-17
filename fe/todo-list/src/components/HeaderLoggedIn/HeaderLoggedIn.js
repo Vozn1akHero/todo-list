@@ -3,18 +3,14 @@ import {Navbar, Nav} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import Button from "react-bootstrap/Button";
 
+import './HeaderLoggedIn.scss';
 
-import './Header.scss';
-
-
-
-class Header extends Component {
-
+export default class HeaderLoggedIn extends Component {
     render() {
         return (
-            <section style={{marginBottom: '1rem'}}>
+            <section className="header-logged-in">
                 <Navbar bg="primary" variant="dark">
-                    <LinkContainer to={'/'}>
+                    <LinkContainer to={'/app'}>
                         <Navbar.Brand>
                             TodoMaster &#9728; &#9729; &#9730; &#9731;
                         </Navbar.Brand>
@@ -22,7 +18,7 @@ class Header extends Component {
                     <Nav className="ml-auto main-nav">
                         <Button variant="light" className="new-todo-btn" onClick={this.props.newTodoFormShow}>New Todo</Button>
 
-                        <LinkContainer to={'/settings'}>
+                        <LinkContainer to={'/app/settings'}>
                             <i className="fas fa-cog settings-icon" />
                         </LinkContainer>
                     </Nav>
@@ -31,5 +27,3 @@ class Header extends Component {
         );
     }
 }
-
-export default Header;

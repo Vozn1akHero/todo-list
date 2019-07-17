@@ -1,0 +1,31 @@
+.header-not-logged-in{
+    margin-bottom: 10rem;
+
+    i{
+        color: white;
+        font-size: 1.3rem;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .main-nav{
+        align-items: center;
+    }
+
+
+    .settings-icon{
+        margin-right: 2rem;
+    }
+
+    .new-todo-btn{
+        margin-right: 3rem;
+    }
+
+    @media (min-width: 992px) {
+        .joinup-btn{
+            margin: 0 2rem;
+        }
+    }
+}

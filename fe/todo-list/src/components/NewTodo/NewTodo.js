@@ -19,8 +19,9 @@ class NewTodo extends Component {
                 date: new moment().format('YYYY-MM-DD'),
                 done: false
             };
+            console.log(newTodo)
 
-            await axios.post('http://localhost:3001/todo', newTodo).then((res) =>{
+            await axios.post('/todo', newTodo).then((res) =>{
                 dispatch({type: 'ADD_TODO', payload: JSON.parse(res.config.data)})
             });
 

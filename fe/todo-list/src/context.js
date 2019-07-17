@@ -39,13 +39,13 @@ export class Provider extends Component {
         };
     }
 
-    async componentDidMount() {
-        const res = await axios.get(`http://localhost:3001/todo/findallbydate?date=${this.state.curChosenDay}`);
+/*    async componentDidMount() {
+        //const res = await axios.get(`http://localhost:3001/todo/findallbydate?date=${this.state.curChosenDay}`);
 
         this.setState({
-            todos: res.data
+            todos: []
         })
-    }
+    }*/
 
     render() {
         return (

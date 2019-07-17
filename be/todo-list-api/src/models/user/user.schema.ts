@@ -5,5 +5,5 @@ export const UserSchema = new mongoose.Schema({
     login : String,
     password : String,
     temporaryToken: String,
-    todos: [TodoSchema]
+    todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TodoSchema' }]
 });

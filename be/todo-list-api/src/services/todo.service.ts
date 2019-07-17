@@ -35,8 +35,11 @@ export class TodoService {
         return await this.todoModel.find().exec();
     }
 
-    async findAllByDate(chosenDate) : Promise<Todo[]> {
-        return await this.todoModel.find( {date: chosenDate} ).exec();
+    async findAllByDate(chosenDate, userToken) : Promise<Todo[]> {
+        return await this.userModel.findOne({ temporaryToken: userToken })
+          .populate('todos')
+          .findMany( {date: chosenDate} )
+          .exec();
     }
 
     async removeToDo(id) {

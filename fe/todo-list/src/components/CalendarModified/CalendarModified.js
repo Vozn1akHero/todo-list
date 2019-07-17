@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import axios from "axios";
 import moment from "moment";
 
-class CCalendar extends Component {
+class CalendarModified extends Component {
     constructor(props) {
         super(props);
 
@@ -38,4 +38,4 @@ class CCalendar extends Component {
     }
 }
 
-export default CCalendar;
+export default CalendarModified;

@@ -7,7 +7,7 @@ import './Todo.scss';
 class Todo extends Component {
     changeToDoStatus = async (id, dispatch) => {
         try {
-            await axios.put(`http://localhost:3001/todo/changeTodoStatus/${id}`);
+            await axios.put(`/todo/changeTodoStatus/${id}`);
             dispatch({type: 'UNMARK_DONE_TODO', payload: id});
 
         } catch (e) {
@@ -17,7 +17,7 @@ class Todo extends Component {
 
     onDeleteClick = async (id, dispatch) => {
         try {
-            await axios.delete(`http://localhost:3001/todo/${id}`);
+            await axios.delete(`/todo/${id}`);
             dispatch({type: 'REMOVE_TODO', payload: id});
         } catch (e) {
             alert("error occured");

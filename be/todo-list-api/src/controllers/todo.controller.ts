@@ -12,9 +12,10 @@ export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
-  create(@Body() createTodoDto: TodoDto, @Res() res, @Req() req) {
-    const userToken: String = req.headers.authorization;
-    this.todoService.create(userToken, createTodoDto);
+  create(@Body() createTodoDto: TodoDto, @Req() req) {
+    console.log(createTodoDto)
+
+    this.todoService.create(req.session.token, createTodoDto);
   }
 
   @Get()
@@ -23,8 +24,9 @@ export class TodoController {
   }
 
   @Get('findAllByDate')
-  async findAllByDate(@Query('date') date) : Promise<Todo[]>{
-    return this.todoService.findAllByDate(date);
+  async findAllByDate(@Query('date') date, @Req() req) : Promise<Todo[]>{
+    const userToken: string = req.session.token;
+    return this.todoService.findAllByDate(date, userToken);
   }
 
   @Delete(':id')

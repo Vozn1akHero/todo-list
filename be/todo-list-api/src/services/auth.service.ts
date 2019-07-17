@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { Injectable, Res, UnauthorizedException } from '@nestjs/common';
 import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
@@ -35,7 +37,7 @@ export class AuthService {
   async logIn(userData: UserAuthDto) : Promise<any> {
     const user = await this.userModel.findOne({login: userData.login}, (err, foundUser) => foundUser);
 
-    if(!user) return new UnauthorizedException();
+    if(!user) return false;
 
     const passwordCorrectness = bcrypt.compareSync(userData.password, user.password);
 
@@ -45,12 +47,25 @@ export class AuthService {
         login: user.login
       };
 
-      const token = {
-        access_token: this.jwtService.sign(payload),
-      };
+      const accessToken = this.jwtService.sign(payload);
 
-      return token;
+      await this.userModel.updateOne({ login: userData.login }, {
+        temporaryToken: accessToken
+      });
+
+      return {
+        tokenExists: true,
+        accessToken
+      };
     }
-    else return new UnauthorizedException();
+    else return false;
+  }
+
+  async verifyJWT(token: string) {
+    return await this.jwtService.verifyAsync(token).then((value) => {
+      return true;
+    }).catch(err => {
+      return false;
+    });
   }
 }

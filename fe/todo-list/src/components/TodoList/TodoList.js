@@ -3,19 +3,19 @@ import Row from "react-bootstrap/Row";
 import {Consumer} from "../../context";
 import Todo from "../Todo/Todo";
 
-import CCalendar from "../CCalendar/CCalendar";
+import CalendarModified from "../CalendarModified/CalendarModified";
 
 
 class TodoList extends Component {
     render() {
         return (
-            <React.Fragment>
+            <>
                 <Consumer>
                     {
                         ({todos, dispatch}) =>
                             <React.Fragment>
                                 <Row style={{justifyContent: 'center'}}>
-                                    <CCalendar dispatch={dispatch}/>
+                                    <CalendarModified dispatch={dispatch}/>
                                 </Row>
 
                                 <Row>
@@ -26,7 +26,7 @@ class TodoList extends Component {
                             </React.Fragment>
                     }
                 </Consumer>
-            </React.Fragment>
+            </>
         );
     }
 }
